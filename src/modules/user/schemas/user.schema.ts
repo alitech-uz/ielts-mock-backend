@@ -1,25 +1,29 @@
 import { ModelDefinition, Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import mongoose, { Document } from 'mongoose';
 import { ROLES } from 'src/common/constants';
 
 @Schema({ timestamps: true })
 export class User extends Document {
-  @Prop({ required: true })
+  @Prop({ type: String, required: true })
   firstName: string;
 
-  @Prop({ required: true })
+  @Prop({ type: String, required: true })
   lastName: string;
 
-  @Prop({ required: true, unique: true })
+  @Prop({ type: String, required: true, unique: true })
   login: string;
 
-  @Prop({ required: true })
+  @Prop({ type: String, required: true })
   password: string;
 
-  @Prop({ default: ROLES.STUDENT })
+  @Prop({
+    type: String,
+    default: ROLES.STUDENT,
+    enum: [ROLES.ADMIN, ROLES.STUDENT],
+  })
   role: string;
 
-  @Prop({ default: null })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Center', default: null })
   centerId?: string;
 }
 

@@ -1,24 +1,24 @@
 import { ModelDefinition, Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import mongoose, { Document } from 'mongoose';
 
 @Schema({ timestamps: true })
 export class StudentExam extends Document {
-  @Prop({ required: true })
+  @Prop({ type: Date, required: true })
   date: Date;
 
-  @Prop({ required: true })
+  @Prop({ type: Date, required: true })
   comletedAt: Date;
 
-  @Prop({ required: true })
+  @Prop({ type: Date, required: true })
   startedAt: Date;
 
-  @Prop({ required: true })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Exam', required: true })
   examId: string;
 
-  @Prop({ required: true })
+  @Prop({ type: Boolean, required: true, default: false })
   isCompleted: boolean;
 
-  @Prop({ required: true })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true })
   studentId: string;
 }
 

@@ -6,25 +6,19 @@ export class CenterOutput {
   id: string;
 
   @Field()
-  firstName: string;
+  address: string;
 
   @Field()
-  lastName: string;
+  phone: string;
 
   @Field()
-  login: string;
+  name: string;
 
   @Field()
-  password: string;
+  logo: string;
 
   @Field()
-  role: string;
-
-  @Field()
-  image: string;
-
-  @Field()
-  centerId: string;
+  estabilishedAt: Date;
 
   @Field()
   createdAt: Date;

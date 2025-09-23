@@ -3,17 +3,17 @@ import { ArgsType, Field } from '@nestjs/graphql';
 @ArgsType()
 export class CreateCenterArgs {
   @Field()
-  firstName: string;
+  address: string;
 
   @Field()
-  lastName: string;
+  phone: string;
 
   @Field()
-  login: string;
+  name: string;
 
   @Field()
-  password: string;
+  logo: string;
 
   @Field()
-  centerId: string;
+  estabilishedAt: Date;
 }
