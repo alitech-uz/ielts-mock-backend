@@ -1,17 +1,40 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { join } from 'path';
+import { GraphQLError } from 'graphql';
+import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
+import { ApolloServerPlugin } from '@apollo/server';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
-    GraphQLModule.forRoot<ApolloDriverConfig>({
+    ConfigModule,
+    GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-      csrfPrevention: false,
-      playground: true,
-      sortSchema: true,
-      context: ({ req, res }) => ({ req, res }),
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        uploads: false,
+        playground: false,
+        introspection: true,
+        autoSchemaFile: true,
+        csrfPrevention: false,
+        plugins: [
+          ApolloServerPluginLandingPageLocalDefault() as ApolloServerPlugin,
+        ],
+        context: ({ req, res }) => ({ req, res }),
+        formatError: (error: GraphQLError) => {
+          const isProduction = configService.get('NODE_ENV') === 'production';
+
+          return {
+            path: error.path,
+            message: error.message,
+            extensions: isProduction
+              ? { code: error.extensions?.code }
+              : error.extensions,
+          };
+        },
+      }),
     }),
   ],
 })

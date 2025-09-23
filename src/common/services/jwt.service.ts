@@ -11,8 +11,6 @@ export class JwtService {
   }
 
   sign(payload: object, expiresIn: string = '24h') {
-    console.log(expiresIn);
-
     return jwt.sign(payload, this.secret, { expiresIn });
   }
 

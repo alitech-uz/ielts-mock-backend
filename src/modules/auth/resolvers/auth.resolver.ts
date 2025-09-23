@@ -1,14 +1,14 @@
 import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
-import { UserOutput } from 'src/modules/user/dto';
 import { AuthService } from '../services/auth.service';
 import { Response } from 'express';
 import { LoginAuthArgs } from '../dto/args';
+import { LoginOutput } from '../dto/outputs';
 
-@Resolver(() => UserOutput)
+@Resolver(() => LoginOutput)
 export class AuthResolver {
   constructor(private readonly authService: AuthService) {}
 
-  @Mutation(() => UserOutput)
+  @Mutation(() => LoginOutput)
   async login(
     @Args() input: LoginAuthArgs,
     @Context() context: { res: Response },
@@ -22,7 +22,14 @@ export class AuthResolver {
       maxAge: 1000 * 60 * 60 * 24,
     });
 
-    return existingUser;
+    return {
+      id: existingUser.id,
+      firstName: existingUser.firstName,
+      lastName: existingUser.lastName,
+      login: existingUser.login,
+      role: existingUser.role,
+      token,
+    };
   }
 
   @Mutation(() => String)
