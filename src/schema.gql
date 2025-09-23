@@ -1,0 +1,68 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type CenterOutput {
+  centerId: String!
+  createdAt: DateTime!
+  firstName: String!
+  id: ID!
+  image: String!
+  lastName: String!
+  login: String!
+  password: String!
+  role: String!
+  updatedAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  createCenter(centerId: String!, firstName: String!, lastName: String!, login: String!, password: String!): CenterOutput!
+  createStudentExam(comletedAt: DateTime!, date: DateTime!, examId: String!, isCompleted: Boolean!, startedAt: DateTime!, studentId: String!): StudentExamOutput!
+  createUser(centerId: String, firstName: String!, lastName: String!, login: String!, password: String!): UserOutput!
+  login(login: String!, password: String!, rememberMe: Boolean!): UserOutput!
+  logout: String!
+  removeCenter(id: String!): Boolean!
+  removeStudentExam(id: String!): Boolean!
+  removeUser(id: String!): Boolean!
+  updateCenter(centerId: String, firstName: String, id: ID!, lastName: String, login: String, password: String): CenterOutput!
+  updateStudentExam(comletedAt: DateTime, date: DateTime, examId: String, id: ID!, isCompleted: Boolean, startedAt: DateTime, studentId: String): StudentExamOutput!
+  updateUser(centerId: String, firstName: String, id: ID!, lastName: String, login: String, password: String): UserOutput!
+}
+
+type Query {
+  findAllCenters: [CenterOutput!]!
+  findAllStudentExams: [StudentExamOutput!]!
+  findAllUsers: [UserOutput!]!
+  findOneCenter(id: String!): CenterOutput!
+  findOneStudentExam(id: String!): StudentExamOutput!
+  findOneUser(id: String!): UserOutput!
+}
+
+type StudentExamOutput {
+  comletedAt: DateTime!
+  createdAt: DateTime!
+  date: DateTime!
+  examId: String!
+  id: ID!
+  isCompleted: Boolean!
+  startedAt: DateTime!
+  studentId: String!
+  updatedAt: DateTime!
+}
+
+type UserOutput {
+  centerId: String!
+  createdAt: DateTime!
+  firstName: String!
+  id: ID!
+  lastName: String!
+  login: String!
+  password: String!
+  role: String!
+  updatedAt: DateTime!
+}
