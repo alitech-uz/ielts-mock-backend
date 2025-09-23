@@ -3,17 +3,17 @@ import { Field, InputType } from '@nestjs/graphql';
 @InputType()
 export class CreateCenterInput {
   @Field()
-  firstName: string;
+  address: string;
 
   @Field()
-  lastName: string;
+  phone: string;
 
   @Field()
-  login: string;
+  name: string;
 
   @Field()
-  password: string;
+  logo: string;
 
   @Field()
-  centerId: string;
+  estabilishedAt: Date;
 }

@@ -1,31 +1,53 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from '../schemas/user.schema';
 import { Model } from 'mongoose';
 import { UpdateUserInput } from '../dto/inputs/update-user.input';
 import { CreateUserInput } from '../dto';
 import { HashService } from 'src/common/services/hash.service';
+import { Center } from 'src/modules/center/schemas/center.schema';
+import { ROLES } from 'src/common/constants';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectModel(User.name) private userModel: Model<User>,
+    @InjectModel(Center.name) private centerModel: Model<Center>,
     private hashService: HashService,
   ) {}
 
   async findAll() {
-    return await this.userModel.find().exec();
+    return await this.userModel
+      .find({ role: { $ne: ROLES.SUPER_ADMIN } })
+      .select('-password')
+      .exec();
   }
 
   async findOne(id: string) {
-    return await this.userModel.findById(id).exec();
+    return await this.userModel
+      .findOne({ _id: id, role: { $ne: ROLES.SUPER_ADMIN } })
+      .select('-password')
+      .exec();
   }
 
   async create(input: CreateUserInput) {
+    const foundUser = await this.userModel.findOne({ login: input.login });
+    if (foundUser) {
+      throw new BadRequestException('User already exists');
+    }
+
     input.password = await this.hashService.hash(input.password);
 
-    // if (input.centerId) {
-    // }
+    if (input.centerId) {
+      const foundCenter = await this.centerModel.findById(input.centerId);
+      if (!foundCenter) {
+        throw new NotFoundException('Not found center');
+      }
+    }
 
     return await this.userModel.create(input);
   }
@@ -37,7 +59,9 @@ export class UserService {
   }
 
   async remove(id: string) {
-    const result = await this.userModel.findByIdAndDelete(id).exec();
+    const result = await this.userModel
+      .findByIdAndDelete({ _id: id, role: { $ne: ROLES.SUPER_ADMIN } })
+      .exec();
     return !!result;
   }
 }

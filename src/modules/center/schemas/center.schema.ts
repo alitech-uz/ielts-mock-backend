@@ -3,20 +3,20 @@ import { Document } from 'mongoose';
 
 @Schema({ timestamps: true })
 export class Center extends Document {
-  @Prop({ required: true })
-  firstName: string;
+  @Prop({ type: String, required: true })
+  address: string;
 
-  @Prop({ required: true })
-  lastName: string;
+  @Prop({ type: String, required: true })
+  phone: string;
 
-  @Prop({ required: true, unique: true })
-  login: string;
+  @Prop({ type: String, required: true })
+  name: string;
 
-  @Prop({ required: true })
-  password: string;
+  @Prop({ type: String, required: true })
+  logo: string;
 
-  @Prop({ required: true })
-  centerId: string;
+  @Prop({ type: Date, required: true })
+  estabilishedAt: Date;
 }
 
 export const CenterSchema = SchemaFactory.createForClass(Center);

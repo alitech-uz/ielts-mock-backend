@@ -4,14 +4,10 @@ import { Center } from '../schemas/center.schema';
 import { Model } from 'mongoose';
 import { UpdateCenterInput } from '../dto/inputs/update-center.input';
 import { CreateCenterInput } from '../dto';
-import { HashService } from 'src/common/services/hash.service';
 
 @Injectable()
 export class CenterService {
-  constructor(
-    @InjectModel(Center.name) private centerModel: Model<Center>,
-    private hashService: HashService,
-  ) {}
+  constructor(@InjectModel(Center.name) private centerModel: Model<Center>) {}
 
   async findAll() {
     return await this.centerModel.find().exec();
@@ -22,8 +18,6 @@ export class CenterService {
   }
 
   async create(input: CreateCenterInput) {
-    input.password = await this.hashService.hash(input.password);
-
     return await this.centerModel.create(input);
   }
 
