@@ -1,7 +1,7 @@
 import { ArgsType, Field } from '@nestjs/graphql';
 
 @ArgsType()
-export class GetExamSectionByIdArgs {
+export class GetWritingByIdArgs {
   @Field()
   id: string;
 }

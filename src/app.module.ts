@@ -5,7 +5,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { StudentExamModule } from './modules/student-exam/student-exam.module';
 import { CenterModule } from './modules/center/center.module';
 import { ExamModule } from './modules/exam/exam.module';
-import { ExamSectionModule } from './modules/exam-section/exam-section.module';
+import { WritingModule } from './modules/writing/writing.module';
 
 @Module({
   imports: [
@@ -15,7 +15,7 @@ import { ExamSectionModule } from './modules/exam-section/exam-section.module';
     StudentExamModule,
     CenterModule,
     ExamModule,
-    ExamSectionModule,
+    WritingModule,
   ],
 })
 export class AppModule {}
