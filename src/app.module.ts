@@ -6,6 +6,7 @@ import { StudentExamModule } from './modules/student-exam/student-exam.module';
 import { CenterModule } from './modules/center/center.module';
 import { ExamModule } from './modules/exam/exam.module';
 import { WritingModule } from './modules/writing/writing.module';
+import { ReadingModule } from './modules/reading/reading.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { WritingModule } from './modules/writing/writing.module';
     CenterModule,
     ExamModule,
     WritingModule,
+    ReadingModule,
   ],
 })
 export class AppModule {}
