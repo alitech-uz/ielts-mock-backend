@@ -16,7 +16,7 @@ export class ReadingPassage {
   text: string;
 
   @Prop({ type: [ReadingQuestionSchema], default: [] })
-  questions: ReadingQuestion;
+  questions: ReadingQuestion[];
 }
 
 export const ReadingPassageSchema =

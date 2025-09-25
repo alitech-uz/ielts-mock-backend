@@ -20,9 +20,9 @@ export class CreateWritingTaskInput {
   @Field(() => Int)
   minWords: number;
 
-  @Field(() => Int)
-  points: number;
-
   @Field()
   sampleAnswer: string;
+
+  @Field(() => Int)
+  points: number;
 }

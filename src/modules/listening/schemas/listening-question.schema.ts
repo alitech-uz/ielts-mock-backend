@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 @Schema({ _id: false })
-export class ReadingQuestion {
+export class ListeningQuestion {
   @Prop({ type: String, required: true })
   question: string;
 
@@ -15,5 +15,5 @@ export class ReadingQuestion {
   points: number;
 }
 
-export const ReadingQuestionSchema =
-  SchemaFactory.createForClass(ReadingQuestion);
+export const ListeningQuestionSchema =
+  SchemaFactory.createForClass(ListeningQuestion);

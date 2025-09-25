@@ -21,11 +21,11 @@ export class WritingTask {
   @Prop({ type: Number, required: true })
   minWords: number;
 
-  @Prop({ type: Number, default: 0 })
-  points: number;
-
   @Prop({ type: String, required: true })
   sampleAnswer: string;
+
+  @Prop({ type: Number, default: 0 })
+  points: number;
 }
 
 export const WritingTaskSchema = SchemaFactory.createForClass(WritingTask);
