@@ -8,6 +8,7 @@ import { ExamModule } from './modules/exam/exam.module';
 import { WritingModule } from './modules/writing/writing.module';
 import { ReadingModule } from './modules/reading/reading.module';
 import { ListeningModule } from './modules/listening/listening.module';
+import { SpeakingModule } from './modules/speaking/speaking.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { ListeningModule } from './modules/listening/listening.module';
     WritingModule,
     ReadingModule,
     ListeningModule,
+    SpeakingModule,
   ],
 })
 export class AppModule {}
