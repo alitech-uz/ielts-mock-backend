@@ -12,6 +12,9 @@ export class ListeningPart {
   @Prop({ type: String, required: true })
   title: string;
 
+  @Prop({ type: String, default: null })
+  audio?: string;
+
   @Prop({ type: String, required: true })
   transcript: string;
 

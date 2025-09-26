@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Speaking } from '../schemas';
@@ -30,7 +30,9 @@ export class SpeakingService {
   }
 
   async remove(id: string) {
-    const result = await this.speakingModel.findByIdAndDelete(id).exec();
-    return !!result;
+    const existingSpeaking = await this.speakingModel
+      .findByIdAndDelete(id)
+      .exec();
+    return !!existingSpeaking;
   }
 }

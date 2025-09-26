@@ -1,13 +1,17 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Center } from '../schemas/center.schema';
 import { Model } from 'mongoose';
 import { UpdateCenterInput } from '../dto/inputs/update-center.input';
 import { CreateCenterInput } from '../dto';
+import { FileService } from 'src/modules/file/services/file.service';
 
 @Injectable()
 export class CenterService {
-  constructor(@InjectModel(Center.name) private centerModel: Model<Center>) {}
+  constructor(
+    @InjectModel(Center.name) private centerModel: Model<Center>,
+    private fileServcie: FileService,
+  ) {}
 
   async findAll() {
     return await this.centerModel.find().exec();
@@ -22,13 +26,27 @@ export class CenterService {
   }
 
   async update(id: string, input: UpdateCenterInput) {
+    const existingCenter = await this.centerModel.findById(id);
+    if (!existingCenter) {
+      throw new NotFoundException('Not found center');
+    }
+
+    if (input.logo) {
+      await this.fileServcie.delete(existingCenter.logo);
+    }
+
     return await this.centerModel
       .findByIdAndUpdate(id, input, { new: true })
       .exec();
   }
 
   async remove(id: string) {
-    const result = await this.centerModel.findByIdAndDelete(id).exec();
-    return !!result;
+    const existingCenter = await this.centerModel.findByIdAndDelete(id).exec();
+
+    if (existingCenter?.logo) {
+      await this.fileServcie.delete(existingCenter.logo);
+    }
+
+    return !!existingCenter;
   }
 }

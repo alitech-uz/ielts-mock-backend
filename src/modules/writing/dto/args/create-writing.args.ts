@@ -5,7 +5,4 @@ import { CreateWritingTaskInput } from '../inputs';
 export class CreateWritingArgs {
   @Field(() => [CreateWritingTaskInput])
   tasks: CreateWritingTaskInput[];
-
-  @Field(() => ID)
-  examId: string;
 }

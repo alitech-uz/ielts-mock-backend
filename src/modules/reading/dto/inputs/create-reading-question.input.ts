@@ -10,7 +10,4 @@ export class CreateReadingQuestionInput {
 
   @Field()
   correctAnswer: string;
-
-  @Field(() => Int, { defaultValue: 1 })
-  points: number;
 }

@@ -4,9 +4,6 @@ import mongoose, { Document } from 'mongoose';
 @Schema({ timestamps: true })
 export class StudentExam extends Document {
   @Prop({ type: Date, required: true })
-  date: Date;
-
-  @Prop({ type: Date, required: true })
   comletedAt: Date;
 
   @Prop({ type: Date, required: true })

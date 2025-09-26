@@ -5,7 +5,4 @@ import { CreateListeningPartInput } from './create-listening-part.input';
 export class CreateListeningInput {
   @Field(() => [CreateListeningPartInput])
   parts: CreateListeningPartInput[];
-
-  @Field(() => ID)
-  examId: string;
 }

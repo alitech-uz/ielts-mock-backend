@@ -23,6 +23,18 @@ export class ExamOutput {
   @Field()
   centerId: string;
 
+  @Field({ nullable: true })
+  writingId?: string;
+
+  @Field({ nullable: true })
+  readingId?: string;
+
+  @Field({ nullable: true })
+  listeningId?: string;
+
+  @Field({ nullable: true })
+  speakingId?: string;
+
   @Field()
   createdAt: Date;
 

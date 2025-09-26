@@ -10,7 +10,4 @@ export class ListeningQuestionOutput {
 
   @Field()
   correctAnswer: string;
-
-  @Field(() => Int, { defaultValue: 1 })
-  points: number;
 }

@@ -11,8 +11,8 @@ export class CreateWritingTaskInput {
   @Field()
   instruction: string;
 
-  @Field()
-  questionType: string;
+  @Field({ nullable: true })
+  fileUrl?: string;
 
   @Field({ nullable: true })
   image?: string;
@@ -22,7 +22,4 @@ export class CreateWritingTaskInput {
 
   @Field()
   sampleAnswer: string;
-
-  @Field(() => Int)
-  points: number;
 }

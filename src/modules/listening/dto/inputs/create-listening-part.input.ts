@@ -9,6 +9,9 @@ export class CreateListeningPartInput {
   @Field()
   title: string;
 
+  @Field({ nullable: true })
+  audio?: string;
+
   @Field()
   transcript: string;
 

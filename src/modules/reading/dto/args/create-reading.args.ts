@@ -5,7 +5,4 @@ import { CreateReadingPassageInput } from '../inputs';
 export class CreateReadingArgs {
   @Field(() => [CreateReadingPassageInput])
   passages: CreateReadingPassageInput[];
-
-  @Field(() => ID)
-  examId: string;
 }

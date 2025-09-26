@@ -10,9 +10,6 @@ export class ReadingQuestion {
 
   @Prop({ type: String, required: true })
   correctAnswer: string;
-
-  @Prop({ type: Number, default: 1 })
-  points: number;
 }
 
 export const ReadingQuestionSchema =

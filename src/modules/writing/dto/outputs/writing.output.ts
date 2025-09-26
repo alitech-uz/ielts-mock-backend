@@ -11,17 +11,14 @@ export class WritingTaskOutput {
   @Field()
   instruction: string;
 
-  @Field()
-  questionType: string;
+  @Field({ nullable: true })
+  fileUrl?: string;
 
   @Field({ nullable: true })
   image?: string;
 
   @Field(() => Int)
   minWords: number;
-
-  @Field(() => Int)
-  points: number;
 
   @Field()
   sampleAnswer: string;
@@ -31,7 +28,4 @@ export class WritingTaskOutput {
 export class WritingOutput {
   @Field(() => [WritingTaskOutput])
   tasks: WritingTaskOutput[];
-
-  @Field(() => ID)
-  examId: string;
 }

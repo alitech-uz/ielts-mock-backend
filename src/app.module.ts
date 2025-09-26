@@ -9,6 +9,7 @@ import { WritingModule } from './modules/writing/writing.module';
 import { ReadingModule } from './modules/reading/reading.module';
 import { ListeningModule } from './modules/listening/listening.module';
 import { SpeakingModule } from './modules/speaking/speaking.module';
+import { FileModule } from './modules/file/file.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { SpeakingModule } from './modules/speaking/speaking.module';
     ReadingModule,
     ListeningModule,
     SpeakingModule,
+    FileModule,
   ],
 })
 export class AppModule {}

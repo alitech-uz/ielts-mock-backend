@@ -5,7 +5,4 @@ import { ListeningPartOutput } from '.';
 export class ListeningOutput {
   @Field(() => [ListeningPartOutput])
   parts: ListeningPartOutput[];
-
-  @Field(() => ID)
-  examId: string;
 }

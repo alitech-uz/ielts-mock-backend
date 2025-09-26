@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Reading } from '../schemas';
@@ -30,7 +30,9 @@ export class ReadingService {
   }
 
   async remove(id: string) {
-    const result = await this.readingModel.findByIdAndDelete(id).exec();
-    return !!result;
+    const existingReading = await this.readingModel
+      .findByIdAndDelete(id)
+      .exec();
+    return !!existingReading;
   }
 }

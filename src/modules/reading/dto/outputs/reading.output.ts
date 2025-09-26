@@ -5,7 +5,4 @@ import { ReadingPassageOutput } from '../outputs';
 export class ReadingOutput {
   @Field(() => [ReadingPassageOutput])
   passages: ReadingPassageOutput[];
-
-  @Field(() => ID)
-  examId: string;
 }

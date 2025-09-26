@@ -20,6 +20,26 @@ export class Exam extends Document {
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Center', required: true })
   centerId: string;
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Writing', default: null })
+  writingId?: string;
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Reading', default: null })
+  readingId?: string;
+
+  @Prop({
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Listening',
+    default: null,
+  })
+  listeningId?: string;
+
+  @Prop({
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Speaking',
+    default: null,
+  })
+  speakingId?: string;
 }
 
 export const ExamSchema = SchemaFactory.createForClass(Exam);

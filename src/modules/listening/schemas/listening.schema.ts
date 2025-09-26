@@ -6,9 +6,6 @@ import { ListeningPart, ListeningPartSchema } from './listening-part.schema';
 export class Listening extends Document {
   @Prop({ type: [ListeningPartSchema], default: [] })
   parts: ListeningPart[];
-
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Exam', required: true })
-  examId: string;
 }
 
 export const ListeningSchema = SchemaFactory.createForClass(Listening);
