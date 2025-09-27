@@ -21,7 +21,7 @@ export class AuthService {
   async login(input: LoginAuthInput) {
     const existingUser = await this.userModel.findOne({ login: input.login });
     if (!existingUser) {
-      throw new NotFoundException('Not found User login');
+      throw new NotFoundException('User not found');
     }
 
     const isMatch = await this.hashService.compare(
