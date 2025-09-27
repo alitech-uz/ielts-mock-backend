@@ -6,7 +6,7 @@ export class StudentExamOutput {
   id: string;
 
   @Field()
-  comletedAt: Date;
+  completedAt: Date;
 
   @Field()
   startedAt: Date;

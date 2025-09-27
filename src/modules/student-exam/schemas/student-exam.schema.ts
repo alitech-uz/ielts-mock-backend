@@ -4,7 +4,7 @@ import mongoose, { Document } from 'mongoose';
 @Schema({ timestamps: true })
 export class StudentExam extends Document {
   @Prop({ type: Date, required: true })
-  comletedAt: Date;
+  completedAt: Date;
 
   @Prop({ type: Date, required: true })
   startedAt: Date;

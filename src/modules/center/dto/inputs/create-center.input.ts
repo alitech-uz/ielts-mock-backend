@@ -15,5 +15,5 @@ export class CreateCenterInput {
   logo: string;
 
   @Field()
-  estabilishedAt: Date;
+  establishedAt: Date;
 }

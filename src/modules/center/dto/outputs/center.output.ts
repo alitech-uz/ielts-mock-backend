@@ -18,7 +18,7 @@ export class CenterOutput {
   logo: string;
 
   @Field()
-  estabilishedAt: Date;
+  establishedAt: Date;
 
   @Field()
   createdAt: Date;

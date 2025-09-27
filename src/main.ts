@@ -9,9 +9,10 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-    origin: [],
+    origin: 'http://localhost:5173', // your React app
+    credentials: true, // allow cookies/auth headers if needed
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'UPDATE'],
-    credentials: true,
+    allowedHeaders: ['Content-Type', 'Accept', 'Authorization'],
   });
 
   app.use(express.static(join(process.cwd(), 'uploads')));

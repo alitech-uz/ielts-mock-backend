@@ -15,5 +15,5 @@ export class CreateCenterArgs {
   logo: string;
 
   @Field()
-  estabilishedAt: Date;
+  establishedAt: Date;
 }
