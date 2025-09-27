@@ -12,6 +12,9 @@ export class CreateReadingPassageInput {
   @Field()
   text: string;
 
+  @Field({ nullable: true })
+  sourceUrl?: string;
+
   @Field(() => [CreateReadingQuestionInput])
   questions: CreateReadingQuestionInput[];
 }

@@ -9,6 +9,9 @@ export class SpeakingPartOutput {
   @Field()
   title: string;
 
+  @Field({ nullable: true })
+  sourceUrl?: string;
+
   @Field(() => [SpeakingQuestionOutput])
   questions: SpeakingQuestionOutput[];
 }

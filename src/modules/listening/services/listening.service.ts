@@ -1,10 +1,9 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Listening } from '../schemas';
 import { UpdateListeningInput } from '../dto/inputs/update-listening.input';
 import { CreateListeningInput } from '../dto';
-import { Exam } from 'src/modules/exam/schemas/exam.schema';
 import { FileService } from 'src/modules/file/services/file.service';
 
 @Injectable()
@@ -38,11 +37,15 @@ export class ListeningService {
       .exec();
 
     if (existingListening?.parts.length) {
-      await Promise.all(
-        existingListening.parts
+      await Promise.all([
+        ...existingListening.parts
           .filter((t) => t.audio)
           .map((t) => t.audio && this.fileService.delete(t.audio)),
-      );
+
+        ...existingListening.parts
+          .filter((t) => t.sourceUrl)
+          .map((t) => t.sourceUrl && this.fileService.delete(t.sourceUrl)),
+      ]);
     }
 
     return !!existingListening;

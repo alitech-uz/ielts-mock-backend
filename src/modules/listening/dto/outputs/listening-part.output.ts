@@ -12,6 +12,9 @@ export class ListeningPartOutput {
   @Field({ nullable: true })
   audio?: string;
 
+  @Field({ nullable: true })
+  sourceUrl?: string;
+
   @Field()
   transcript: string;
 

@@ -1,4 +1,4 @@
-import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { UserService } from '../services/user.service';
 import {
   GetUserByIdArgs,
@@ -18,7 +18,7 @@ export class UserResolver {
   @UseGuards(JwtGuard, RoleGuard)
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Query(() => [UserOutput])
-  findAllUsers(@Context('req') req) {
+  findAllUsers() {
     return this.userService.findAll();
   }
 

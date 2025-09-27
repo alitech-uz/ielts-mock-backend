@@ -1,4 +1,4 @@
-import { ObjectType, Field, ID, Int } from '@nestjs/graphql';
+import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class WritingTaskOutput {
@@ -12,7 +12,7 @@ export class WritingTaskOutput {
   instruction: string;
 
   @Field({ nullable: true })
-  fileUrl?: string;
+  sourceUrl?: string;
 
   @Field({ nullable: true })
   image?: string;

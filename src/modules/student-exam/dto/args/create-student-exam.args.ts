@@ -3,7 +3,7 @@ import { ArgsType, Field } from '@nestjs/graphql';
 @ArgsType()
 export class CreateStudentExamArgs {
   @Field()
-  comletedAt: Date;
+  completedAt: Date;
 
   @Field()
   startedAt: Date;

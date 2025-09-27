@@ -1,5 +1,5 @@
 import { ModelDefinition, Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose, { Document } from 'mongoose';
+import { Document } from 'mongoose';
 import { ListeningPart, ListeningPartSchema } from './listening-part.schema';
 
 @Schema({ timestamps: true })

@@ -9,6 +9,9 @@ export class CreateSpeakingPartInput {
   @Field()
   title: string;
 
+  @Field({ nullable: true })
+  sourceUrl?: string;
+
   @Field(() => [CreateSpeakingQuestionInput])
   questions: CreateSpeakingQuestionInput[];
 }

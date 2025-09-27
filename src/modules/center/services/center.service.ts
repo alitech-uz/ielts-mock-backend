@@ -10,7 +10,7 @@ import { FileService } from 'src/modules/file/services/file.service';
 export class CenterService {
   constructor(
     @InjectModel(Center.name) private centerModel: Model<Center>,
-    private fileServcie: FileService,
+    private fileService: FileService,
   ) {}
 
   async findAll() {
@@ -32,7 +32,7 @@ export class CenterService {
     }
 
     if (input.logo) {
-      await this.fileServcie.delete(existingCenter.logo);
+      await this.fileService.delete(existingCenter.logo);
     }
 
     return await this.centerModel
@@ -44,7 +44,7 @@ export class CenterService {
     const existingCenter = await this.centerModel.findByIdAndDelete(id).exec();
 
     if (existingCenter?.logo) {
-      await this.fileServcie.delete(existingCenter.logo);
+      await this.fileService.delete(existingCenter.logo);
     }
 
     return !!existingCenter;

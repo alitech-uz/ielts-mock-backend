@@ -12,6 +12,9 @@ export class SpeakingPart {
   @Prop({ type: String, required: true })
   title: string;
 
+  @Prop({ type: String, default: null })
+  sourceUrl?: string;
+
   @Prop({ type: [SpeakingQuestionSchema], default: [] })
   questions: SpeakingQuestion[];
 }

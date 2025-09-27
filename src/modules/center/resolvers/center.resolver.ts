@@ -1,4 +1,4 @@
-import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CenterService } from '../services/center.service';
 import {
   GetCenterByIdArgs,
@@ -18,7 +18,7 @@ export class CenterResolver {
   @UseGuards(JwtGuard, RoleGuard)
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Query(() => [CenterOutput])
-  findAllCenters(@Context('req') req) {
+  findAllCenters() {
     return this.centerService.findAll();
   }
 

@@ -12,7 +12,7 @@ export class CreateWritingTaskInput {
   instruction: string;
 
   @Field({ nullable: true })
-  fileUrl?: string;
+  sourceUrl?: string;
 
   @Field({ nullable: true })
   image?: string;

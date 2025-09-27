@@ -1,4 +1,4 @@
-import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { WritingService } from '../services/writing.service';
 import {
   GetWritingByIdArgs,
@@ -18,7 +18,7 @@ export class WritingResolver {
   @UseGuards(JwtGuard, RoleGuard)
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Query(() => [WritingOutput])
-  findAllWritings(@Context('req') req) {
+  findAllWritings() {
     return this.writingService.findAll();
   }
 

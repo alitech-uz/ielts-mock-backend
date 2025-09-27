@@ -16,7 +16,7 @@ export class Center extends Document {
   logo: string;
 
   @Prop({ type: Date, required: true })
-  estabilishedAt: Date;
+  establishedAt: Date;
 }
 
 export const CenterSchema = SchemaFactory.createForClass(Center);
