@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Injectable,
   NotFoundException,
+  OnModuleInit,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from '../schemas/user.schema';
@@ -13,7 +14,7 @@ import { Center } from 'src/modules/center/schemas/center.schema';
 import { ROLES } from 'src/common/constants';
 
 @Injectable()
-export class UserService {
+export class UserService implements OnModuleInit {
   constructor(
     @InjectModel(User.name) private userModel: Model<User>,
     @InjectModel(Center.name) private centerModel: Model<Center>,
@@ -34,6 +35,22 @@ export class UserService {
       .exec();
   }
 
+  async onModuleInit() {
+    const existingUser = await this.userModel.findOne({
+      role: ROLES.SUPER_ADMIN,
+    });
+    if (!existingUser) {
+      const hashedPassword = await this.hashService.hash('12345678');
+
+      await this.userModel.create({
+        firstName: 'Shoxruh',
+        lastName: 'Toshmuhamedov',
+        password: hashedPassword,
+        login: '+998909007174',
+        role: ROLES.SUPER_ADMIN,
+      });
+    }
+  }
   async create(input: CreateUserInput) {
     const foundUser = await this.userModel.findOne({ login: input.login });
     if (foundUser) {

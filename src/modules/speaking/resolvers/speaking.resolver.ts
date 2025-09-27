@@ -1,4 +1,4 @@
-import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { SpeakingService } from '../services/speaking.service';
 import {
   GetSpeakingByIdArgs,
@@ -18,7 +18,7 @@ export class SpeakingResolver {
   @UseGuards(JwtGuard, RoleGuard)
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Query(() => [SpeakingOutput])
-  findAllSpeakings(@Context('req') req) {
+  findAllSpeakings() {
     return this.speakingService.findAll();
   }
 

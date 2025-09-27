@@ -1,6 +1,5 @@
 import {
   Controller,
-  Delete,
   Post,
   UploadedFile,
   UseGuards,
@@ -16,7 +15,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 export class FileController {
   constructor(private fileService: FileService) {}
 
-  // @UseGuards(JwtGuard, RoleGuard)
+  @UseGuards(JwtGuard, RoleGuard)
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))

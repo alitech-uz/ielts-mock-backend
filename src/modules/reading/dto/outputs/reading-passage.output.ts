@@ -12,6 +12,9 @@ export class ReadingPassageOutput {
   @Field()
   text: string;
 
+  @Field({ nullable: true })
+  sourceUrl?: string;
+
   @Field(() => [ReadingQuestionOutput])
   questions: ReadingQuestionOutput[];
 }

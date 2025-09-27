@@ -1,14 +1,16 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Speaking } from '../schemas';
 import { UpdateSpeakingInput } from '../dto/inputs/update-speaking.input';
 import { CreateSpeakingInput } from '../dto';
+import { FileService } from 'src/modules/file/services/file.service';
 
 @Injectable()
 export class SpeakingService {
   constructor(
     @InjectModel(Speaking.name) private speakingModel: Model<Speaking>,
+    private fileService: FileService,
   ) {}
 
   async findAll() {
@@ -33,6 +35,14 @@ export class SpeakingService {
     const existingSpeaking = await this.speakingModel
       .findByIdAndDelete(id)
       .exec();
+
+    if (existingSpeaking?.parts.length) {
+      await Promise.all(
+        existingSpeaking.parts
+          .filter((t) => t.sourceUrl)
+          .map((t) => t.sourceUrl && this.fileService.delete(t.sourceUrl)),
+      );
+    }
     return !!existingSpeaking;
   }
 }

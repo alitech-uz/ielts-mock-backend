@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Writing } from '../schemas/writing.schema';
 import { Model } from 'mongoose';
@@ -43,8 +43,8 @@ export class WritingService {
           .map((t) => t.image && this.fileService.delete(t.image)),
 
         ...existingWriting.tasks
-          .filter((t) => t.fileUrl)
-          .map((t) => t.fileUrl && this.fileService.delete(t.fileUrl)),
+          .filter((t) => t.sourceUrl)
+          .map((t) => t.sourceUrl && this.fileService.delete(t.sourceUrl)),
       ]);
     }
     return !!existingWriting;

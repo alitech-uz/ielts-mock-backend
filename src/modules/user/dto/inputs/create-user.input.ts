@@ -15,5 +15,8 @@ export class CreateUserInput {
   password: string;
 
   @Field({ nullable: true })
+  role?: string;
+
+  @Field({ nullable: true })
   centerId?: string;
 }

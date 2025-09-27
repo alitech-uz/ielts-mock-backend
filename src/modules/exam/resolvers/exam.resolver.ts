@@ -1,4 +1,4 @@
-import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { ExamService } from '../services/exam.service';
 import {
   GetExamByIdArgs,
@@ -18,7 +18,7 @@ export class ExamResolver {
   @UseGuards(JwtGuard, RoleGuard)
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Query(() => [ExamOutput])
-  findAllExams(@Context('req') req) {
+  findAllExams() {
     return this.examService.findAll();
   }
 

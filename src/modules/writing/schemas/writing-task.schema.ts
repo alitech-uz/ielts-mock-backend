@@ -1,5 +1,4 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { TASK } from 'src/common/constants/task.constant';
 
 @Schema({ _id: false })
 export class WritingTask {
@@ -13,7 +12,7 @@ export class WritingTask {
   instruction: string;
 
   @Prop({ type: String, default: null })
-  fileUrl?: string;
+  sourceUrl?: string;
 
   @Prop({ type: String, default: null })
   image?: string;

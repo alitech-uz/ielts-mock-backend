@@ -4,9 +4,9 @@ import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class HashService {
-  private readonly saltRounds: number;
+  private saltRounds: number;
 
-  constructor(private readonly configService: ConfigService) {
+  constructor(configService: ConfigService) {
     this.saltRounds = Number(configService.get<number>('BCRYPT_SALT_ROUNDS'));
   }
 

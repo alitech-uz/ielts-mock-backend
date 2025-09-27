@@ -15,6 +15,9 @@ export class ReadingPassage {
   @Prop({ type: String, required: true })
   text: string;
 
+  @Prop({ type: String, default: null })
+  sourceUrl?: string;
+
   @Prop({ type: [ReadingQuestionSchema], default: [] })
   questions: ReadingQuestion[];
 }

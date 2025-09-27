@@ -1,4 +1,4 @@
-import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { ListeningService } from '../services/listening.service';
 import {
   GetListeningByIdArgs,
@@ -18,7 +18,7 @@ export class ListeningResolver {
   @UseGuards(JwtGuard, RoleGuard)
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Query(() => [ListeningOutput])
-  findAllListenings(@Context('req') req) {
+  findAllListenings() {
     return this.listeningService.findAll();
   }
 
