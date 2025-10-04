@@ -4,5 +4,5 @@ import { CreateWritingArgs } from './create-writing.args';
 @ArgsType()
 export class UpdateWritingArgs extends PartialType(CreateWritingArgs) {
   @Field(() => ID)
-  id: string;
+  _id: string;
 }

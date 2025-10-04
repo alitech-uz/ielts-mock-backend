@@ -1,9 +1,9 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
 
 @ObjectType()
 export class WritingTaskOutput {
   @Field(() => Int)
-  taskNumber: number;
+  part: number;
 
   @Field()
   title: string;
@@ -11,21 +11,36 @@ export class WritingTaskOutput {
   @Field()
   instruction: string;
 
-  @Field({ nullable: true })
-  sourceUrl?: string;
-
-  @Field({ nullable: true })
-  image?: string;
+  @Field()
+  topic: string;
 
   @Field(() => Int)
-  minWords: number;
+  wordCount: number;
+
+  @Field(() => Int)
+  timeLimit: number;
 
   @Field()
   sampleAnswer: string;
+
+  @Field(() => [String])
+  files: string[];
 }
 
 @ObjectType()
 export class WritingOutput {
+  @Field(() => ID)
+  _id: string;
+
+  @Field()
+  title: string;
+
+  @Field()
+  description: string;
+
+  @Field(() => Int)
+  duration: number;
+
   @Field(() => [WritingTaskOutput])
   tasks: WritingTaskOutput[];
 }

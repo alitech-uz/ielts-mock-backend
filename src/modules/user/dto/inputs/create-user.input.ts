@@ -9,7 +9,7 @@ export class CreateUserInput {
   lastName: string;
 
   @Field()
-  login: string;
+  phone: string;
 
   @Field()
   password: string;

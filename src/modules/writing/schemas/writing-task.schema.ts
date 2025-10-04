@@ -3,7 +3,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 @Schema({ _id: false })
 export class WritingTask {
   @Prop({ type: Number, required: true })
-  taskNumber: number;
+  part: number;
 
   @Prop({ type: String, required: true })
   title: string;
@@ -11,17 +11,20 @@ export class WritingTask {
   @Prop({ type: String, required: true })
   instruction: string;
 
-  @Prop({ type: String, default: null })
-  sourceUrl?: string;
-
-  @Prop({ type: String, default: null })
-  image?: string;
+  @Prop({ type: String, required: true })
+  topic: string;
 
   @Prop({ type: Number, required: true })
-  minWords: number;
+  wordCount: number;
+
+  @Prop({ type: Number, required: true })
+  timeLimit: number;
 
   @Prop({ type: String, required: true })
   sampleAnswer: string;
+
+  @Prop({ type: [String], default: [] })
+  files: string[];
 }
 
 export const WritingTaskSchema = SchemaFactory.createForClass(WritingTask);

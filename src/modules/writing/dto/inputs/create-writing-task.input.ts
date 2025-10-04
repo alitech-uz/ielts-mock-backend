@@ -3,7 +3,7 @@ import { InputType, Field, Int } from '@nestjs/graphql';
 @InputType()
 export class CreateWritingTaskInput {
   @Field(() => Int)
-  taskNumber: number;
+  part: number;
 
   @Field()
   title: string;
@@ -11,15 +11,18 @@ export class CreateWritingTaskInput {
   @Field()
   instruction: string;
 
-  @Field({ nullable: true })
-  sourceUrl?: string;
-
-  @Field({ nullable: true })
-  image?: string;
+  @Field()
+  topic: string;
 
   @Field(() => Int)
-  minWords: number;
+  wordCount: number;
+
+  @Field(() => Int)
+  timeLimit: number;
 
   @Field()
   sampleAnswer: string;
+
+  @Field(() => [String], { defaultValue: [] })
+  files: string[];
 }

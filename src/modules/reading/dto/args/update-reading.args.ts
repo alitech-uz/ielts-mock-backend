@@ -4,5 +4,5 @@ import { CreateReadingArgs } from './create-reading.args';
 @ArgsType()
 export class UpdateReadingArgs extends PartialType(CreateReadingArgs) {
   @Field(() => ID)
-  id: string;
+  _id: string;
 }

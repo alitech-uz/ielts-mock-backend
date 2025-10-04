@@ -4,5 +4,5 @@ import { CreateCenterArgs } from './create-center.args';
 @ArgsType()
 export class UpdateCenterArgs extends PartialType(CreateCenterArgs) {
   @Field(() => ID)
-  id: string;
+  _id: string;
 }

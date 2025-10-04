@@ -4,5 +4,5 @@ import { CreateUserArgs } from './create-user.args';
 @ArgsType()
 export class UpdateUserArgs extends PartialType(CreateUserArgs) {
   @Field(() => ID)
-  id: string;
+  _id: string;
 }

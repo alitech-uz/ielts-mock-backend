@@ -26,7 +26,7 @@ export class SpeakingResolver {
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Query(() => SpeakingOutput)
   findOneSpeaking(@Args() args: GetSpeakingByIdArgs) {
-    return this.speakingService.findOne(args.id);
+    return this.speakingService.findOne(args._id);
   }
 
   @UseGuards(JwtGuard, RoleGuard)
@@ -40,13 +40,13 @@ export class SpeakingResolver {
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Mutation(() => SpeakingOutput)
   updateSpeaking(@Args() input: UpdateSpeakingArgs) {
-    return this.speakingService.update(input.id, input);
+    return this.speakingService.update(input._id, input);
   }
 
   @UseGuards(JwtGuard, RoleGuard)
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Mutation(() => Boolean)
   removeSpeaking(@Args() args: GetSpeakingByIdArgs) {
-    return this.speakingService.remove(args.id);
+    return this.speakingService.remove(args._id);
   }
 }

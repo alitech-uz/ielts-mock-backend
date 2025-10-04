@@ -26,7 +26,7 @@ export class WritingResolver {
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Query(() => WritingOutput)
   findOneWriting(@Args() args: GetWritingByIdArgs) {
-    return this.writingService.findOne(args.id);
+    return this.writingService.findOne(args._id);
   }
 
   @UseGuards(JwtGuard, RoleGuard)
@@ -40,13 +40,13 @@ export class WritingResolver {
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Mutation(() => WritingOutput)
   updateWriting(@Args() input: UpdateWritingArgs) {
-    return this.writingService.update(input.id, input);
+    return this.writingService.update(input._id, input);
   }
 
   @UseGuards(JwtGuard, RoleGuard)
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Mutation(() => Boolean)
   removeWriting(@Args() args: GetWritingByIdArgs) {
-    return this.writingService.remove(args.id);
+    return this.writingService.remove(args._id);
   }
 }

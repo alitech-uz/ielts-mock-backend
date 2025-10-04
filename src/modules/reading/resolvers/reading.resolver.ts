@@ -26,7 +26,7 @@ export class ReadingResolver {
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Query(() => ReadingOutput)
   findOneReading(@Args() args: GetReadingByIdArgs) {
-    return this.readingService.findOne(args.id);
+    return this.readingService.findOne(args._id);
   }
 
   @UseGuards(JwtGuard, RoleGuard)
@@ -40,13 +40,13 @@ export class ReadingResolver {
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Mutation(() => ReadingOutput)
   updateReading(@Args() input: UpdateReadingArgs) {
-    return this.readingService.update(input.id, input);
+    return this.readingService.update(input._id, input);
   }
 
   @UseGuards(JwtGuard, RoleGuard)
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Mutation(() => Boolean)
   removeReading(@Args() args: GetReadingByIdArgs) {
-    return this.readingService.remove(args.id);
+    return this.readingService.remove(args._id);
   }
 }

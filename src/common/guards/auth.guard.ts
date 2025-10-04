@@ -1,4 +1,9 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import {
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '../services/jwt.service';
 import { GqlExecutionContext } from '@nestjs/graphql';
 
@@ -8,7 +13,9 @@ export class JwtGuard implements CanActivate {
 
   canActivate(context: ExecutionContext): boolean {
     const ctx = GqlExecutionContext.create(context).getContext();
-    const token = ctx.req.cookies?.['token'];
+    // const token = ctx.req.cookies?.['token'];
+    const token = ctx.req.headers?.authorization?.split(' ')[1];
+
     if (!token) return false;
 
     try {
@@ -16,7 +23,9 @@ export class JwtGuard implements CanActivate {
       ctx.req.user = payload;
       return true;
     } catch (error) {
-      return false;
+      throw new UnauthorizedException(
+        'You are not authorized to access this resource. Please provide a valid token.',
+      );
     }
   }
 }

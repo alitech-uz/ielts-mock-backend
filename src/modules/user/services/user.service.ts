@@ -46,13 +46,13 @@ export class UserService implements OnModuleInit {
         firstName: 'Shoxruh',
         lastName: 'Toshmuhamedov',
         password: hashedPassword,
-        login: '+998909007174',
+        phone: '+998995558877',
         role: ROLES.SUPER_ADMIN,
       });
     }
   }
   async create(input: CreateUserInput) {
-    const foundUser = await this.userModel.findOne({ login: input.login });
+    const foundUser = await this.userModel.findOne({ phone: input.phone });
     if (foundUser) {
       throw new BadRequestException('User already exists');
     }
