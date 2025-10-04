@@ -1,7 +1,7 @@
-import { ArgsType, Field } from '@nestjs/graphql';
+import { ArgsType, Field, ID } from '@nestjs/graphql';
 
 @ArgsType()
 export class GetStudentExamByIdArgs {
-  @Field()
-  id: string;
+  @Field(() => ID)
+  _id: string;
 }

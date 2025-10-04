@@ -3,7 +3,7 @@ import { Field, ID, ObjectType } from '@nestjs/graphql';
 @ObjectType()
 export class LoginOutput {
   @Field(() => ID)
-  id: string;
+  _id: string;
 
   @Field()
   firstName: string;
@@ -12,7 +12,7 @@ export class LoginOutput {
   lastName: string;
 
   @Field()
-  login: string;
+  phone: string;
 
   @Field()
   role: string;

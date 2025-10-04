@@ -4,5 +4,5 @@ import { CreateExamArgs } from './create-exam.args';
 @ArgsType()
 export class UpdateExamArgs extends PartialType(CreateExamArgs) {
   @Field(() => ID)
-  id: string;
+  _id: string;
 }

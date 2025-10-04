@@ -26,7 +26,7 @@ export class AuthResolver {
       id: existingUser.id,
       firstName: existingUser.firstName,
       lastName: existingUser.lastName,
-      login: existingUser.login,
+      phone: existingUser.phone,
       role: existingUser.role,
       token,
     };

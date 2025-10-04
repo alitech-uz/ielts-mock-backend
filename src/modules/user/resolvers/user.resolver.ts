@@ -26,7 +26,7 @@ export class UserResolver {
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Query(() => UserOutput)
   findOneUser(@Args() args: GetUserByIdArgs) {
-    return this.userService.findOne(args.id);
+    return this.userService.findOne(args._id);
   }
 
   @UseGuards(JwtGuard, RoleGuard)
@@ -40,13 +40,13 @@ export class UserResolver {
   @Roles(ROLES.SUPER_ADMIN)
   @Mutation(() => UserOutput)
   updateUser(@Args() input: UpdateUserArgs) {
-    return this.userService.update(input.id, input);
+    return this.userService.update(input._id, input);
   }
 
   @UseGuards(JwtGuard, RoleGuard)
   @Roles(ROLES.SUPER_ADMIN)
   @Mutation(() => Boolean)
   removeUser(@Args() args: GetUserByIdArgs) {
-    return this.userService.remove(args.id);
+    return this.userService.remove(args._id);
   }
 }

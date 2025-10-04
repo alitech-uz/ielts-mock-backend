@@ -26,7 +26,7 @@ export class ListeningResolver {
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Query(() => ListeningOutput)
   findOneListening(@Args() args: GetListeningByIdArgs) {
-    return this.listeningService.findOne(args.id);
+    return this.listeningService.findOne(args._id);
   }
 
   @UseGuards(JwtGuard, RoleGuard)
@@ -40,13 +40,13 @@ export class ListeningResolver {
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Mutation(() => ListeningOutput)
   updateListening(@Args() input: UpdateListeningArgs) {
-    return this.listeningService.update(input.id, input);
+    return this.listeningService.update(input._id, input);
   }
 
   @UseGuards(JwtGuard, RoleGuard)
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Mutation(() => Boolean)
   removeListening(@Args() args: GetListeningByIdArgs) {
-    return this.listeningService.remove(args.id);
+    return this.listeningService.remove(args._id);
   }
 }

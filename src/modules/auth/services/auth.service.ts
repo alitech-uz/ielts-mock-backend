@@ -19,7 +19,7 @@ export class AuthService {
   ) {}
 
   async login(input: LoginAuthInput) {
-    const existingUser = await this.userModel.findOne({ login: input.login });
+    const existingUser = await this.userModel.findOne({ phone: input.phone });
     if (!existingUser) {
       throw new NotFoundException('User not found');
     }

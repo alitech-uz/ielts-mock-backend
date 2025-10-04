@@ -26,7 +26,7 @@ export class ExamResolver {
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Query(() => ExamOutput)
   findOneExam(@Args() args: GetExamByIdArgs) {
-    return this.examService.findOne(args.id);
+    return this.examService.findOne(args._id);
   }
 
   @UseGuards(JwtGuard, RoleGuard)
@@ -40,13 +40,13 @@ export class ExamResolver {
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Mutation(() => ExamOutput)
   updateExam(@Args() input: UpdateExamArgs) {
-    return this.examService.update(input.id, input);
+    return this.examService.update(input._id, input);
   }
 
   @UseGuards(JwtGuard, RoleGuard)
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Mutation(() => Boolean)
   removeExam(@Args() args: GetExamByIdArgs) {
-    return this.examService.remove(args.id);
+    return this.examService.remove(args._id);
   }
 }

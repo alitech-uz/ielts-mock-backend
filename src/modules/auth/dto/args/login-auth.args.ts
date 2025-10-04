@@ -3,7 +3,7 @@ import { ArgsType, Field } from '@nestjs/graphql';
 @ArgsType()
 export class LoginAuthArgs {
   @Field()
-  login: string;
+  phone: string;
 
   @Field()
   password: string;

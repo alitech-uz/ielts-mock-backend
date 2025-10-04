@@ -4,13 +4,11 @@ import { Writing } from '../schemas/writing.schema';
 import { Model } from 'mongoose';
 import { UpdateWritingInput } from '../dto/inputs/update-writing.input';
 import { CreateWritingInput } from '../dto';
-import { FileService } from 'src/modules/file/services/file.service';
 
 @Injectable()
 export class WritingService {
   constructor(
     @InjectModel(Writing.name) private writingModel: Model<Writing>,
-    private fileService: FileService,
   ) {}
 
   async findAll() {
@@ -35,18 +33,6 @@ export class WritingService {
     const existingWriting = await this.writingModel
       .findByIdAndDelete(id)
       .exec();
-
-    if (existingWriting?.tasks.length) {
-      await Promise.all([
-        ...existingWriting.tasks
-          .filter((t) => t.image)
-          .map((t) => t.image && this.fileService.delete(t.image)),
-
-        ...existingWriting.tasks
-          .filter((t) => t.sourceUrl)
-          .map((t) => t.sourceUrl && this.fileService.delete(t.sourceUrl)),
-      ]);
-    }
     return !!existingWriting;
   }
 }

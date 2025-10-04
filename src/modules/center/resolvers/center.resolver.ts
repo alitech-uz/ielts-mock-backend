@@ -26,7 +26,7 @@ export class CenterResolver {
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Query(() => CenterOutput)
   findOneCenter(@Args() args: GetCenterByIdArgs) {
-    return this.centerService.findOne(args.id);
+    return this.centerService.findOne(args._id);
   }
 
   @UseGuards(JwtGuard, RoleGuard)
@@ -40,13 +40,13 @@ export class CenterResolver {
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Mutation(() => CenterOutput)
   updateCenter(@Args() input: UpdateCenterArgs) {
-    return this.centerService.update(input.id, input);
+    return this.centerService.update(input._id, input);
   }
 
   @UseGuards(JwtGuard, RoleGuard)
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Mutation(() => Boolean)
   removeCenter(@Args() args: GetCenterByIdArgs) {
-    return this.centerService.remove(args.id);
+    return this.centerService.remove(args._id);
   }
 }

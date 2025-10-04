@@ -3,7 +3,7 @@ import { Field, ID, ObjectType } from '@nestjs/graphql';
 @ObjectType()
 export class StudentExamOutput {
   @Field(() => ID)
-  id: string;
+  _id: string;
 
   @Field()
   startedAt: Date;
