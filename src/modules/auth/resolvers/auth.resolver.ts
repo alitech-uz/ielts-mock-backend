@@ -23,7 +23,7 @@ export class AuthResolver {
     });
 
     return {
-      id: existingUser.id,
+      _id: existingUser._id,
       firstName: existingUser.firstName,
       lastName: existingUser.lastName,
       phone: existingUser.phone,

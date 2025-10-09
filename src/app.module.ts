@@ -10,6 +10,7 @@ import { ReadingModule } from './modules/reading/reading.module';
 import { ListeningModule } from './modules/listening/listening.module';
 import { SpeakingModule } from './modules/speaking/speaking.module';
 import { FileModule } from './modules/file/file.module';
+import { PartModule } from './modules/part/part.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { FileModule } from './modules/file/file.module';
     StudentExamModule,
     CenterModule,
     ExamModule,
+    PartModule,
     WritingModule,
     ReadingModule,
     ListeningModule,

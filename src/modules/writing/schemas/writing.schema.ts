@@ -1,6 +1,5 @@
 import { ModelDefinition, Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
-import { WritingTask, WritingTaskSchema } from './writing-task.schema';
+import mongoose, { Document } from 'mongoose';
 
 @Schema({ timestamps: true })
 export class Writing extends Document {
@@ -13,8 +12,11 @@ export class Writing extends Document {
   @Prop({ type: Number, required: true })
   duration: number;
 
-  @Prop({ type: [WritingTaskSchema], default: [] })
-  tasks: WritingTask[];
+  @Prop({ type: Boolean, default: false })
+  isDeleted: boolean;
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Users', default: '' })
+  deletedBy: string;
 }
 
 export const WritingSchema = SchemaFactory.createForClass(Writing);

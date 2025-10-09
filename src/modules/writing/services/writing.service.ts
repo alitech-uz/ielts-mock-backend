@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Writing } from '../schemas/writing.schema';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { UpdateWritingInput } from '../dto/inputs/update-writing.input';
 import { CreateWritingInput } from '../dto';
 
@@ -12,11 +12,64 @@ export class WritingService {
   ) {}
 
   async findAll() {
-    return await this.writingModel.find().exec();
+    return await this.writingModel
+      .aggregate([
+        {
+          $match: {
+            isDeleted: false,
+          },
+        },
+        {
+          $lookup: {
+            from: 'parts',
+            localField: '_id',
+            foreignField: 'moduleId',
+            as: 'parts',
+            pipeline: [
+              {
+                $match: {
+                  isDeleted: false,
+                },
+              },
+            ],
+          },
+        },
+      ])
+      .exec();
   }
 
   async findOne(id: string) {
-    return await this.writingModel.findById(id).exec();
+    const [writing] = await this.writingModel
+      .aggregate([
+        {
+          $match: {
+            _id: new Types.ObjectId(id),
+            isDeleted: false,
+          },
+        },
+        {
+          $lookup: {
+            from: 'parts',
+            localField: '_id',
+            foreignField: 'moduleId',
+            as: 'parts',
+            pipeline: [
+              {
+                $match: {
+                  isDeleted: false,
+                },
+              },
+            ],
+          },
+        },
+      ])
+      .exec();
+
+    if (!writing) {
+      throw new NotFoundException('Not found writing');
+    }
+
+    return writing;
   }
 
   async create(input: CreateWritingInput) {
@@ -29,9 +82,13 @@ export class WritingService {
       .exec();
   }
 
-  async remove(id: string) {
+  async remove(id: string, authId) {
     const existingWriting = await this.writingModel
-      .findByIdAndDelete(id)
+      .findByIdAndUpdate(
+        id,
+        { isDeleted: true, deletedBy: authId },
+        { new: true },
+      )
       .exec();
     return !!existingWriting;
   }

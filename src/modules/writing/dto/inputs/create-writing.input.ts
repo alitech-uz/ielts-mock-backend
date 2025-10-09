@@ -1,5 +1,4 @@
 import { InputType, Field, Int } from '@nestjs/graphql';
-import { CreateWritingTaskInput } from './create-writing-task.input';
 
 @InputType()
 export class CreateWritingInput {
@@ -11,7 +10,4 @@ export class CreateWritingInput {
 
   @Field(() => Int)
   duration: number;
-
-  @Field(() => [CreateWritingTaskInput])
-  tasks: CreateWritingTaskInput[];
 }
