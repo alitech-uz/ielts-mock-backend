@@ -33,8 +33,8 @@ export class Part {
   @Prop({ type: mongoose.Schema.Types.ObjectId, required: true })
   moduleId: string;
 
-  @Prop({ type: Boolean, default: false })
-  isDeleted: boolean;
+  @Prop({ type: Date, default: false })
+  deletedAt: Date;
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Users', default: null })
   deletedBy: string;

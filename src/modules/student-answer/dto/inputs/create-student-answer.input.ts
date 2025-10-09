@@ -1,10 +1,22 @@
 import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
-export class CreateStudentAnswerWritingInput {
+export class CreateStudentAnswerInput {
   @Field()
-  questionId: string;
+  examId: string;
+
+  @Field({ nullable: true })
+  questionId?: string;
 
   @Field()
-  answer: string;
+  partId: string;
+
+  @Field()
+  studentAnswer: string;
+
+  @Field({ nullable: true })
+  correctAnswer?: string;
+
+  @Field({ nullable: true })
+  isCorrect?: string;
 }

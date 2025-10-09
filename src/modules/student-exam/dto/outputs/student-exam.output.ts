@@ -8,8 +8,8 @@ export class StudentExamOutput {
   @Field()
   startedAt: Date;
 
-  @Field()
-  completedAt: Date;
+  @Field({ nullable: true })
+  completedAt?: Date;
 
   @Field()
   isCompleted: boolean;

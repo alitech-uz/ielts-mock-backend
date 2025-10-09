@@ -20,8 +20,8 @@ export class Question {
   @Prop({ type: [Option], default: [] })
   options?: Option[];
 
-  @Prop({ type: Boolean, default: false })
-  isDeleted: boolean;
+  @Prop({ type: Date, default: false })
+  deletedAt: Date;
 }
 
 export const QuestionSchema = SchemaFactory.createForClass(Question);
