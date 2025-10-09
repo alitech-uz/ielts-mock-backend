@@ -9,11 +9,13 @@ export class PartService {
   constructor(@InjectModel(Part.name) private partModel: Model<Part>) {}
 
   async findAll() {
-    return await this.partModel.find().exec();
+    return await this.partModel.find({ deletedAt: { $exists: false } }).exec();
   }
 
   async findOne(id: string) {
-    return await this.partModel.findById(id).exec();
+    return await this.partModel
+      .findOne({ _id: id, deletedAt: { $exists: false } })
+      .exec();
   }
 
   async create(input: CreatePartInput) {
@@ -30,7 +32,7 @@ export class PartService {
     const existingPart = await this.partModel
       .findByIdAndUpdate(
         id,
-        { isDeleted: true, deletedBy: authId },
+        { deletedAt: true, deletedBy: authId },
         { new: true },
       )
       .exec();

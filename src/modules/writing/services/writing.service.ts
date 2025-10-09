@@ -16,7 +16,7 @@ export class WritingService {
       .aggregate([
         {
           $match: {
-            isDeleted: false,
+            deletedAt: { $exists: false },
           },
         },
         {
@@ -28,7 +28,7 @@ export class WritingService {
             pipeline: [
               {
                 $match: {
-                  isDeleted: false,
+                  deletedAt: { $exists: false },
                 },
               },
             ],
@@ -44,7 +44,7 @@ export class WritingService {
         {
           $match: {
             _id: new Types.ObjectId(id),
-            isDeleted: false,
+            deletedAt: { $exists: false },
           },
         },
         {
@@ -56,7 +56,7 @@ export class WritingService {
             pipeline: [
               {
                 $match: {
-                  isDeleted: false,
+                  deletedAt: { $exists: false },
                 },
               },
             ],
@@ -86,7 +86,7 @@ export class WritingService {
     const existingWriting = await this.writingModel
       .findByIdAndUpdate(
         id,
-        { isDeleted: true, deletedBy: authId },
+        { deletedAt: true, deletedBy: authId },
         { new: true },
       )
       .exec();

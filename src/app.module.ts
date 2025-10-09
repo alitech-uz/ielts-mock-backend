@@ -11,6 +11,7 @@ import { ListeningModule } from './modules/listening/listening.module';
 import { SpeakingModule } from './modules/speaking/speaking.module';
 import { FileModule } from './modules/file/file.module';
 import { PartModule } from './modules/part/part.module';
+import { StudentAnswerModule } from './modules/student-answer/student-answer.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { PartModule } from './modules/part/part.module';
     AuthModule,
     UserModule,
     StudentExamModule,
+    StudentAnswerModule,
     CenterModule,
     ExamModule,
     PartModule,

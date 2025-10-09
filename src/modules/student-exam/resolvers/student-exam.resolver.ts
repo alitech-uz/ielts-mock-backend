@@ -1,15 +1,15 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { StudentExamService } from '../services/student-exam.service';
 import {
-  GetStudentExamByIdArgs,
-  UpdateStudentExamArgs,
+  CreateStudentExamInput,
   StudentExamOutput,
-  CreateStudentExamArgs,
+  UpdateStudentExamInput,
 } from '../dto';
 import { UseGuards } from '@nestjs/common';
 import { JwtGuard, RoleGuard } from 'src/common/guards';
 import { Roles } from 'src/common/decorators';
 import { ROLES } from 'src/common/constants';
+import { GetByIdArgs } from 'src/common/dto/args';
 
 @Resolver(() => StudentExamOutput)
 export class StudentExamResolver {
@@ -25,28 +25,28 @@ export class StudentExamResolver {
   @UseGuards(JwtGuard, RoleGuard)
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Query(() => StudentExamOutput)
-  findOneStudentExam(@Args() args: GetStudentExamByIdArgs) {
+  findOneStudentExam(@Args() args: GetByIdArgs) {
     return this.studentExamService.findOne(args._id);
   }
 
   @UseGuards(JwtGuard, RoleGuard)
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Mutation(() => StudentExamOutput)
-  createStudentExam(@Args() input: CreateStudentExamArgs) {
+  createStudentExam(@Args('input') input: CreateStudentExamInput) {
     return this.studentExamService.create(input);
   }
 
   @UseGuards(JwtGuard, RoleGuard)
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Mutation(() => StudentExamOutput)
-  updateStudentExam(@Args() input: UpdateStudentExamArgs) {
+  updateStudentExam(@Args('input') input: UpdateStudentExamInput) {
     return this.studentExamService.update(input._id, input);
   }
 
   @UseGuards(JwtGuard, RoleGuard)
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Mutation(() => Boolean)
-  removeStudentExam(@Args() args: GetStudentExamByIdArgs) {
+  removeStudentExam(@Args() args: GetByIdArgs) {
     return this.studentExamService.remove(args._id);
   }
 }

@@ -1,30 +1,45 @@
 import { ModelDefinition, Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose from 'mongoose';
-import { MODULES } from 'src/common/constants/module.constant';
+import mongoose, { Document } from 'mongoose';
 
 @Schema({ timestamps: true })
 export class StudentAnswer extends Document {
   @Prop({
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'StudentExam',
+    ref: 'Exam',
     required: true,
   })
-  studentExamId: string;
+  examId: string;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, required: true })
+  @Prop({
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Question',
+    default: null,
+  })
   questionId: string;
 
-  @Prop({ type: String, enum: MODULES })
-  module: string;
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Part', required: true })
+  partId: string;
 
   @Prop()
-  studentAnswer: any;
+  studentAnswer: string;
 
   @Prop()
-  correctAnswer: any;
+  correctAnswer: string;
 
-  @Prop({ type: Boolean, default: false })
-  isCorrect: any;
+  @Prop({ type: Date, default: false })
+  isCorrect: boolean;
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Users' })
+  checkedBy: string;
+
+  @Prop({ type: Date })
+  checkedAt: Date;
+
+  @Prop({ type: Date, default: false })
+  deletedAt: Date;
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Users' })
+  deletedBy: string;
 }
 
 export const StudentAnswerSchema = SchemaFactory.createForClass(StudentAnswer);

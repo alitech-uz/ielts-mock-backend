@@ -6,10 +6,10 @@ export class StudentExam extends Document {
   @Prop({ type: Date, required: true })
   startedAt: Date;
 
-  @Prop({ type: Date, required: true })
+  @Prop({ type: Date })
   completedAt: Date;
 
-  @Prop({ type: Boolean, required: true, default: false })
+  @Prop({ type: Boolean, default: false })
   isCompleted: boolean;
 
   @Prop({ type: Number, default: 0 })

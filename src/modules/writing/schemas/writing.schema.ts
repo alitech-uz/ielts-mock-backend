@@ -12,10 +12,10 @@ export class Writing extends Document {
   @Prop({ type: Number, required: true })
   duration: number;
 
-  @Prop({ type: Boolean, default: false })
-  isDeleted: boolean;
+  @Prop({ type: Date, default: false })
+  deletedAt: Date;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Users', default: '' })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User', default: '' })
   deletedBy: string;
 }
 

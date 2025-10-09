@@ -6,27 +6,6 @@ export class CreateStudentExamInput {
   startedAt: Date;
 
   @Field()
-  completedAt: Date;
-
-  @Field()
-  isCompleted: boolean;
-
-  @Field({ nullable: true })
-  writingScore?: number;
-
-  @Field({ nullable: true })
-  readingScore?: number;
-
-  @Field({ nullable: true })
-  listeningScore?: number;
-
-  @Field({ nullable: true })
-  speakingScore?: number;
-
-  @Field({ nullable: true })
-  totalScore?: number;
-
-  @Field()
   studentId: string;
 
   @Field()

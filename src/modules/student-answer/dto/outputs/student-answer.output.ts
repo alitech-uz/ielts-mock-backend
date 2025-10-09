@@ -1,26 +1,33 @@
-import { Field, ID } from '@nestjs/graphql';
+import { Field, ID, ObjectType } from '@nestjs/graphql';
 
+@ObjectType()
 export class StudentAnswerOutput {
   @Field(() => ID)
   _id: string;
 
   @Field()
-  studentExamId: string;
+  examId: string;
+
+  @Field({ nullable: true })
+  questionId?: string;
 
   @Field()
-  questionId: string;
-
-  @Field()
-  module: string;
+  partId: string;
 
   @Field()
   studentAnswer: string;
 
-  @Field()
-  correctAnswer: string;
+  @Field({ nullable: true })
+  correctAnswer?: string;
 
-  @Field()
-  isCorrect: boolean;
+  @Field({ nullable: true })
+  isCorrect?: string;
+
+  @Field({ nullable: true })
+  checkedAt: Date;
+
+  @Field({ nullable: true })
+  checkedBy: string;
 
   @Field()
   createdAt: Date;
