@@ -5,4 +5,7 @@ import { CreateWritingInput } from './create-writing.input';
 export class UpdateWritingInput extends PartialType(CreateWritingInput) {
   @Field(() => ID)
   _id: string;
+
+  @Field(() => ID)
+  deletedBy: string;
 }

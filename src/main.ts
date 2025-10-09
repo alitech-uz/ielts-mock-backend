@@ -17,6 +17,8 @@ async function bootstrap() {
 
   app.use(express.static(join(process.cwd(), 'uploads')));
 
+  app.use(express.json({ limit: '60mb' }));
+
   app.use(cookieParser());
 
   const configService = app.get(ConfigService);
