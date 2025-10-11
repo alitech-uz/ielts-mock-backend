@@ -20,8 +20,11 @@ export class Question {
   @Prop({ type: [Option], default: [] })
   options?: Option[];
 
-  @Prop({ type: Date, default: false })
+  @Prop({ type: Date })
   deletedAt: Date;
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
+  deletedBy: string;
 }
 
 export const QuestionSchema = SchemaFactory.createForClass(Question);

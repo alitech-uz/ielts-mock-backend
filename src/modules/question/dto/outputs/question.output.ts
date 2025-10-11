@@ -4,6 +4,9 @@ import { OptionOutput } from './option.output';
 @ObjectType()
 export class QuestionOutput {
   @Field()
+  partId: string;
+
+  @Field()
   question: string;
 
   @Field()

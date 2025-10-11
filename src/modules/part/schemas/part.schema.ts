@@ -33,10 +33,10 @@ export class Part {
   @Prop({ type: mongoose.Schema.Types.ObjectId, required: true })
   moduleId: string;
 
-  @Prop({ type: Date, default: false })
+  @Prop({ type: Date })
   deletedAt: Date;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Users', default: null })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
   deletedBy: string;
 }
 

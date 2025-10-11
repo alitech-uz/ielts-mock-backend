@@ -29,6 +29,14 @@ export class ModuleService {
                   deletedAt: { $exists: false },
                 },
               },
+              {
+                $lookup: {
+                  from: 'questions',
+                  localField: '_id',
+                  foreignField: 'partId',
+                  as: 'questions',
+                },
+              },
             ],
           },
         },
@@ -55,6 +63,14 @@ export class ModuleService {
               {
                 $match: {
                   deletedAt: { $exists: false },
+                },
+              },
+              {
+                $lookup: {
+                  from: 'questions',
+                  localField: '_id',
+                  foreignField: 'partId',
+                  as: 'questions',
                 },
               },
             ],

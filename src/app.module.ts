@@ -9,6 +9,7 @@ import { ModuleModule } from './modules/module/module.module';
 import { FileModule } from './modules/file/file.module';
 import { PartModule } from './modules/part/part.module';
 import { StudentAnswerModule } from './modules/student-answer/student-answer.module';
+import { QuestionModule } from './modules/question/question.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { StudentAnswerModule } from './modules/student-answer/student-answer.mod
     ExamModule,
     PartModule,
     ModuleModule,
+    QuestionModule,
     FileModule,
   ],
 })

@@ -26,7 +26,7 @@ export class StudentAnswer extends Document {
   @Prop()
   correctAnswer: string;
 
-  @Prop({ type: Date, default: false })
+  @Prop({ type: Boolean })
   isCorrect: boolean;
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Users' })
@@ -35,7 +35,7 @@ export class StudentAnswer extends Document {
   @Prop({ type: Date })
   checkedAt: Date;
 
-  @Prop({ type: Date, default: false })
+  @Prop({ type: Date })
   deletedAt: Date;
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Users' })

@@ -22,9 +22,9 @@ export class PartService {
     return await this.partModel.create(input);
   }
 
-  async update(id: string, input: UpdatePartInput) {
+  async update(input: UpdatePartInput) {
     return await this.partModel
-      .findByIdAndUpdate(id, input, { new: true })
+      .findByIdAndUpdate(input._id, input, { new: true })
       .exec();
   }
 
@@ -32,7 +32,7 @@ export class PartService {
     const existingPart = await this.partModel
       .findByIdAndUpdate(
         id,
-        { deletedAt: true, deletedBy: authId },
+        { deletedAt: new Date(), deletedBy: authId },
         { new: true },
       )
       .exec();

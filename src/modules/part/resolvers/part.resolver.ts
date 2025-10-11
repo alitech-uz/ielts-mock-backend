@@ -36,7 +36,7 @@ export class PartResolver {
   @Roles(ROLES.SUPER_ADMIN, ROLES.ADMIN)
   @Mutation(() => PartOutput)
   updatePart(@Args('input') input: UpdatePartInput) {
-    return this.partService.update(input._id, input);
+    return this.partService.update(input);
   }
 
   @UseGuards(JwtGuard, RoleGuard)

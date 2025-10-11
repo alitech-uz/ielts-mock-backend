@@ -65,7 +65,7 @@ export class StudentAnswerService {
     const existingPart = await this.studentAnswerModel
       .findByIdAndUpdate(
         id,
-        { deletedAt: true, deletedBy: authId },
+        { deletedAt: new Date(), deletedBy: authId },
         { new: true },
       )
       .exec();
