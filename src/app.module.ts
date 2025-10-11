@@ -5,10 +5,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { StudentExamModule } from './modules/student-exam/student-exam.module';
 import { CenterModule } from './modules/center/center.module';
 import { ExamModule } from './modules/exam/exam.module';
-import { WritingModule } from './modules/writing/writing.module';
-import { ReadingModule } from './modules/reading/reading.module';
-import { ListeningModule } from './modules/listening/listening.module';
-import { SpeakingModule } from './modules/speaking/speaking.module';
+import { ModuleModule } from './modules/module/module.module';
 import { FileModule } from './modules/file/file.module';
 import { PartModule } from './modules/part/part.module';
 import { StudentAnswerModule } from './modules/student-answer/student-answer.module';
@@ -23,10 +20,7 @@ import { StudentAnswerModule } from './modules/student-answer/student-answer.mod
     CenterModule,
     ExamModule,
     PartModule,
-    WritingModule,
-    ReadingModule,
-    ListeningModule,
-    SpeakingModule,
+    ModuleModule,
     FileModule,
   ],
 })

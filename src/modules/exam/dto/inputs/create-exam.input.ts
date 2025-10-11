@@ -21,14 +21,5 @@ export class CreateExamInput {
   centerId: string;
 
   @Field({ nullable: true })
-  writingId?: string;
-
-  @Field({ nullable: true })
-  readingId?: string;
-
-  @Field({ nullable: true })
-  listeningId?: string;
-
-  @Field({ nullable: true })
-  speakingId?: string;
+  moduleId?: string;
 }
